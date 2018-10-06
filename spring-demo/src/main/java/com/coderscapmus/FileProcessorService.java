@@ -1,9 +1,11 @@
 package com.coderscapmus;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 /**
  * @Component = saying to Spring that FileProcessorService class should be a component, and added inside of Application Context
  * @Autowired = tells to Spring FileReadingService class/bean is a dependency managed by the ApplicationContext, 
@@ -18,7 +20,7 @@ public class FileProcessorService {
 	@Autowired
 	FileReadingService frs;
 	
-	public void processFile()
+	public List<CrimeReportDataRow> processFile( String filename)
 	{
 		/**
 		 * Here is the Dependency Injection comes in; 
@@ -29,13 +31,25 @@ public class FileProcessorService {
 		 *  */
 		//frs = new FileReadingService(); 
 		
-		List<String> lines = frs.readFile("crime_report.csv");
+		List<CrimeReportDataRow> rows = new ArrayList<>();
+		
+		List<String> lines = frs.readFile(filename);
 		
 		for(String line : lines)
 		{
-			System.out.println(line);
+			
+			String[] data = line.split(",");
+			
+			if(data.length == 0 || StringUtils.isEmpty(data[0])) {
+				continue;
+			}
+			
+			rows.add(new CrimeReportDataRow(data));
+			
+			//System.out.println(line);
 		}
 		
+		return rows;
 	}
 
 }
