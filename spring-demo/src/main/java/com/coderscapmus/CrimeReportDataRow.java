@@ -1,5 +1,7 @@
 package com.coderscapmus;
 
+import java.util.Comparator;
+
 public class CrimeReportDataRow {
 	
 	private String crimeDescription;

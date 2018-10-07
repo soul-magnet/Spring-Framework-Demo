@@ -14,3 +14,12 @@ What Modal does?
 You can build the modal by @ModalMap annotation. It's just like a HashMap. Modal is what you used to store,
 all of the pertinent information, the data the objects, and that is going to be sent to and display inside of view.
 View is actual HTML page or JSP file.
+
+
+#Profiles and Spring Boot
+The purpose of SpringBoot to bring a sort of default configuration environment
+pre-setup, pre everything is done for you in order to facilitate rapid development
+of an application inside of java, specifically web application. 
+The whole point of SpringBoot is speed; to be able to get you from zero to get you fully functional,
+fully integrated db and everything in no time flat.
+SpringBoot and profiles are go in hand in hand

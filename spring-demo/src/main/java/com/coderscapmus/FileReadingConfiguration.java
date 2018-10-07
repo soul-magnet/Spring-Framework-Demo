@@ -3,6 +3,7 @@ package com.coderscapmus;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -30,25 +31,26 @@ public class FileReadingConfiguration
 {
 	
 	@Bean
+	@Autowired
 	static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholdConfigurer() 
 	{
 		return new PropertySourcesPlaceholderConfigurer();
 	}
 	
 	
-	@Bean 
-	@Qualifier("ascReport")
-	static CrimeReportResult crimeReportResultAsc ()
-	{
-		return new CrimeReportResult("asc");
-	}
-	
-	@Bean 
-	@Qualifier("descReport")
-	static CrimeReportResult crimeReportResultDesc ()
-	{
-		return new CrimeReportResult("desc");
-	}
+//	@Bean 
+//	@Qualifier("ascReport")
+//	static CrimeReportResult crimeReportResultAsc ()
+//	{
+//		return new CrimeReportResult("asc");
+//	}
+//	
+//	@Bean 
+//	@Qualifier("descReport")
+//	static CrimeReportResult crimeReportResultDesc ()
+//	{
+//		return new CrimeReportResult("desc");
+//	}
 	
 	
 	public static void main(String args[]){
@@ -100,7 +102,7 @@ public class FileReadingConfiguration
 		//ApplicationContext context = new AnnotationConfigApplicationContext(FileReadingConfiguration.class);
 		
 		// SpringApplication.run() return ConfigurableApplicationContext, which is child of ApplicationContext
-		ConfigurableApplicationContext context = SpringApplication.run(FileReadingConfiguration.class, args);
+		//ConfigurableApplicationContext context = SpringApplication.run(FileReadingConfiguration.class, args);
 		
 		//this is the similar way to instantiate FileProcessorrService as FileProcessorService fps = new FileProcessorService(); 
 		//We're not instantiating a new FileProcessort service, we are getting it from Context 
@@ -112,26 +114,26 @@ public class FileReadingConfiguration
 		
 		//fps.processFile();
 		
-		CrimeReport crimeReport = (CrimeReport) context.getBean("crimeReport");
-		crimeReport.generateReport();
+//		CrimeReport crimeReport = (CrimeReport) context.getBean("crimeReport");
+//		crimeReport.generateReport();
 		
 		/*for(CrimeReportDataRow row : crimeReport.getRows()) {
 			System.out.println(row);
 		}*/
 		
-		List<CrimeReport> reports = new ArrayList<>();
-		
-		reports.add((CrimeReport) context.getBean("crimeReport"));
-		reports.add((CrimeReport) context.getBean("crimeReport"));
-		reports.add((CrimeReport) context.getBean("crimeReport"));
-		reports.add((CrimeReport) context.getBean("crimeReport"));
-		reports.add((CrimeReport) context.getBean("crimeReport"));
-		reports.add((CrimeReport) context.getBean("crimeReport"));
-		
-		for(CrimeReport report : reports) {
-			report.generateReport();
-			System.out.println(report);
-		}
+//		List<CrimeReport> reports = new ArrayList<>();
+//		
+//		reports.add((CrimeReport) context.getBean("crimeReport"));
+//		reports.add((CrimeReport) context.getBean("crimeReport"));
+//		reports.add((CrimeReport) context.getBean("crimeReport"));
+//		reports.add((CrimeReport) context.getBean("crimeReport"));
+//		reports.add((CrimeReport) context.getBean("crimeReport"));
+//		reports.add((CrimeReport) context.getBean("crimeReport"));
+//		
+//		for(CrimeReport report : reports) {
+//			report.generateReport();
+//			System.out.println(report);
+//		}
 		
 		/*results from CrimeReport instance calling with Prototype Scope - maintaining State*/
 //		com.coderscapmus.CrimeReport@145eaa29
@@ -148,6 +150,10 @@ public class FileReadingConfiguration
 //		com.coderscapmus.CrimeReport@1a38c59b
 //		com.coderscapmus.CrimeReport@1a38c59b
 //		com.coderscapmus.CrimeReport@1a38c59b
+		
+		
+		/*Continues with the bare necessities of the Controller File to be able to implement MVC*/
+		SpringApplication.run(FileReadingConfiguration.class, args);
 		
 		
 		

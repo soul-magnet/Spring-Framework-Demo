@@ -18,9 +18,9 @@ public class CrimeReport {
 	@Value("${report.filename}")
 	private String filename;
 	
-	@Autowired
-	@Qualifier("ascReport")
-	private CrimeReportResult crimeReportResult;
+//	@Autowired
+//	@Qualifier("ascReport")
+//	private CrimeReportResult crimeReportResult;
 	
 	private FileProcessorService fileProcessorService;
 	
@@ -33,7 +33,7 @@ public class CrimeReport {
 	{
 		System.out.println("Loading filename:" + filename);
 		this.setRows(fileProcessorService.processFile(filename));
-		System.out.println(crimeReportResult.getSorting());
+//		System.out.println(crimeReportResult.getSorting());
 	}
 
 	public List<CrimeReportDataRow> getRows() {
