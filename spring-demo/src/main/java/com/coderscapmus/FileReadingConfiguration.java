@@ -3,7 +3,11 @@ package com.coderscapmus;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -16,8 +20,9 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 @Configuration
 @ComponentScan
+@EnableAutoConfiguration
 @PropertySource("classpath:application.properties")
-public class FileReadingApp 
+public class FileReadingConfiguration 
 {
 	
 	@Bean
@@ -25,6 +30,22 @@ public class FileReadingApp
 	{
 		return new PropertySourcesPlaceholderConfigurer();
 	}
+	
+	
+	@Bean 
+	@Qualifier("ascReport")
+	static CrimeReportResult crimeReportResultAsc ()
+	{
+		return new CrimeReportResult("asc");
+	}
+	
+	@Bean 
+	@Qualifier("descReport")
+	static CrimeReportResult crimeReportResultDesc ()
+	{
+		return new CrimeReportResult("desc");
+	}
+	
 	
 	public static void main(String args[]){
 		
@@ -72,7 +93,10 @@ public class FileReadingApp
 		 *  Because it's going to override instance variable over and over again with the same object, since it's singelton.
 		 *  
 		 * */
-		ApplicationContext context = new AnnotationConfigApplicationContext(FileReadingApp.class);
+		//ApplicationContext context = new AnnotationConfigApplicationContext(FileReadingConfiguration.class);
+		
+		// SpringApplication.run() return ConfigurableApplicationContext, which is child of ApplicationContext
+		ConfigurableApplicationContext context = SpringApplication.run(FileReadingConfiguration.class, args);
 		
 		//this is the similar way to instantiate FileProcessorrService as FileProcessorService fps = new FileProcessorService(); 
 		//We're not instantiating a new FileProcessort service, we are getting it from Context 
