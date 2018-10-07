@@ -16,7 +16,11 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 /**@ComponentScan = this annotation allows it to build ComponentModal, 
- * if you don't add this annotation, it would build Component Modal and it would be able to find Beans inside of the Component Modal*/
+ * if you don't add this annotation, it would build Component Modal and it would be able to find Beans inside of the Component Modal
+ * 
+ * @Qualifiers = if you are having more than 1 Bean with the same type in the same Component Modal, 
+ * and you want to inject one of them with the @Autowired, then you want to use @Qualifier annotation
+ * */
 
 @Configuration
 @ComponentScan

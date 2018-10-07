@@ -1,0 +1,16 @@
+Spring MVC
+
+MVC(Modal View Controller) is a Design Pattern baked in to Spring Framework to allow us to create Web Applications.
+User = (Browser) uses Controller via request. Request has been made when you type in a URL in the address bar of your
+browser. URL is sent as a request, and it is intercepted by your web application. Spring sees the URL and checks
+if it has mapped to a Controller.(To be able to create Controller we use @Controller annotation, in class level, 
+to mark as an actual component in Spring Framework's Object Modal. @Controller extends from @Component)
+
+What Controller does? 
+Intercepts the web requests, and takes the URL and maps it to a potentially method inside of your Controller.
+That's actually done by @RequestMapping annotation. From the method, you can start building and manipulating the MODAL.
+
+What Modal does?
+You can build the modal by @ModalMap annotation. It's just like a HashMap. Modal is what you used to store,
+all of the pertinent information, the data the objects, and that is going to be sent to and display inside of view.
+View is actual HTML page or JSP file.
